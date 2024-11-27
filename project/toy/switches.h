@@ -1,0 +1,15 @@
+#ifndef switches_included
+#define switches_included
+
+#define SW1 BIT3    // original button connected to P1.3
+#define SW2 BIT0    // button1 connected to P2.0
+#define SW3 BIT1    // button2 connected to P2.1
+#define SW4 BIT2    // button3 connected to P2.2
+#define SW5 BIT3    // button4 connected to P2.3
+#define SWITCHES (SW1 | SW2 | SW3 | SW4 | SW5)  // all switches on P1.3 and P2.0 - P2.3
+
+void switch_init();
+
+extern char switch_state_down, switch_state_changed; /* effectively boolean */
+
+#endif // switches_included

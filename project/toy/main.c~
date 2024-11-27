@@ -1,0 +1,47 @@
+#include <msp430.h>
+#include "libTimer.h"
+#include "switches.h"
+#include "led.h"
+#include "buzzer.h"
+
+void wdt_init(){
+  configureClocks();/* setup master oscillator, CPU & peripheral clocks */
+  enableWDTInterrupts();/* enable periodic interrupt */
+
+}
+
+void main(void) {
+  configureClocks();
+  led_init();
+  buzzer_init();
+  switch_init();
+  enableWDTInterrupts();
+
+  or_sr (0x18);// CPU off, GIE on
+}
+
+void
+
+__interrupt_vec(WDT_VECTOR) WDT()/* 250 interrupts/sec */
+
+{
+
+  static int blink_count = 0;
+
+  switch (blink_count) {
+
+  case 6:
+
+    blink_count = 0;
+
+    P1OUT |= LED_RED;
+
+    break;
+
+  default:
+
+    blink_count ++;
+  }
+    
+
+} 
