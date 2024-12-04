@@ -1,15 +1,19 @@
-#ifndef switches_included
-#define switches_included
+#ifndef SWITCHES_H
+#define SWITCHES_H
 
-#define SW1 BIT3    // original button connected to P1.3
-#define SW2 BIT0    // button1 connected to P2.0
-#define SW3 BIT1    // button2 connected to P2.1
-#define SW4 BIT2    // button3 connected to P2.2
-#define SW5 BIT3    // button4 connected to P2.3
-#define SWITCHES (SW1 | SW2 | SW3 | SW4 | SW5)  // all switches on P1.3 and P2.0 - P2.3
+#include <msp430.h>
 
-void switch_init();
+// Switch definitions
+#define SW1 BIT3       /* switch1 is P1.3 (used for octave shift) */
+#define SW2 BIT0       /* switch2 is P2.0 (C4) */
+#define SW3 BIT1       /* switch3 is P2.1 (D4) */
+#define SW4 BIT2       /* switch4 is P2.2 (E4) */
+#define SW5 BIT3       /* switch5 is P2.3 (F4) */
 
-extern char switch_state_down, switch_state_changed; /* effectively boolean */
+#define SWITCHES (SW1 | SW2 | SW3 | SW4 | SW5) // All 5 switches
 
-#endif // switches_included
+// Function declarations
+void switch_init(void);  // Initialize switches
+void switch_interrupt_handler(void);  // Handle switch interrupts
+
+#endif /* SWITCHES_H */

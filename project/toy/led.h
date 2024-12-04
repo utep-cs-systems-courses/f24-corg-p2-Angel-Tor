@@ -1,16 +1,11 @@
-#ifndef led_included
-#define led_included
+#ifndef LED_H
+#define LED_H
 
-#include <msp430.h>
+#define LED_RED BIT0   /* P1.0 */
+#define LED_GREEN BIT6 /* P1.6 */
+#define LEDS (LED_RED | LED_GREEN)
 
-#define LED_RED BIT0               // P1.0
-#define LED_GREEN BIT6             // P1.6
-#define LEDS (BIT0 | BIT6)
+void led_init();
+void led_update(char buttonStates, char octaveShift);
 
-void led_init();/* initialize LEDs */
-void led_update();/* update leds */
-
-// these are boolean flags
-extern unsigned char leds_changed, green_led_state, red_led_state;
-
-#endif
+#endif // LED_H
